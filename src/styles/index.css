@@ -1,0 +1,11 @@
+:root{
+    --html-bg: #ffffff;
+}
+.dark {
+    --html-bg: #121212;
+}
+
+html{
+    font-size: 16px;
+    background-color: var(--html-bg);
+}
