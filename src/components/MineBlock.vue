@@ -2,42 +2,39 @@
 <script setup lang="ts">
 import type { BlockState } from '../types'
 import { isDev } from '../composables/dev'
-
 const props = defineProps<{
   block: BlockState
 }>()
 
-const colorGroup = [
-  'text-indigo-800',
-  'text-green-800',
-  'text-red-800',
-  'text-yellow-800',
-  'text-orange-800',
-  'text-purple-800',
-  'text-pink-800'
+const textColors = [
+  'text-purple-500/80',
+  'text-yellow-500/80',
+  'text-blue-500/80',
+  'text-green-500/80',
+  'text-orange-500/80',
+  'text-violet-500/80',
+  'text-red-500/80',
+  'text-gray-500/80'
 ]
-function returnColor(block: BlockState) {
-  if (block.isFlag)
-    return 'bg-gray-400/30'
 
-  if (block.revealed)
-    return 'bg-gray-400/10'
+const getTextClass = computed(() => {
+  if (props.block.isFlag)
+    return 'bg-gray-400/50'
 
-  if (!block.revealed)
-    return 'bg-gray-400/30 hover:bg-gray-100/30'
-
-  return colorGroup[block.adjacentMines]
-}
+  const str = props.block.isOpen
+    ? 'bg-gray-400/20'
+    : 'bg-gray-400/50 hover:bg-gray-400/20'
+  return `${str} ${textColors[props.block.adjacentMines - 1]}`
+})
 </script>
-
 <template>
   <button
-    class="w-8 h-8 align-middle m.5 text-red"
-    :class="returnColor(block)"
+    class="h8 w8 m.5 flex justify-center items-center border-1 border-gray-300/20"
+    :class="getTextClass"
   >
-    <div v-if="block.isFlag" i-mdi-flag text-red-600 />
-    <span v-else-if="block.revealed || isDev">
-      {{ block.isMine ? '💣' : block.adjacentMines || '' }}
-    </span>
+    <div v-if="block.isFlag" i="mdi-flag" text-red-500 />
+    <div v-else-if="block.isOpen || isDev">
+      {{ block.isMine ? '💣' : block.adjacentMines ? block.adjacentMines : '' }}
+    </div>
   </button>
 </template>

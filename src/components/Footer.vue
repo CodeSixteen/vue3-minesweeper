@@ -2,17 +2,23 @@
 import { useDark, useToggle } from '@vueuse/core'
 const isDark = useDark()
 const onToggle = useToggle(isDark)
-function toggleDark() {
-  onToggle()
-}
+const btnClass = 'hover:text-gray-700 dark:hover:text-gray-100'
 </script>
 
 <template>
-  <div class="flex justify-center text-8 mt20 gap-5 text-gray-400">
-    <button class="hover:text-indigo-700 dark:hover:text-indigo-300" @click="toggleDark">
+  <div class="flex justify-center gap-5 p10 text-gray-400 text-5">
+    <button
+      :class="btnClass"
+      title="Toggle dark mode"
+      @click="onToggle()"
+    >
       <div i="carbon-sun dark:carbon-moon" />
     </button>
-    <a class="hover:text-indigo-700 dark:hover:text-indigo-300" href="https://github.com/CodeSixteen">
+    <a
+      :class="btnClass"
+      title="GitHub"
+      href="https://github.com/CodeSixteen/vue3-minesweeper"
+    >
       <div i="mdi-github" />
     </a>
   </div>

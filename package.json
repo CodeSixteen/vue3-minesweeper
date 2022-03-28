@@ -1,12 +1,11 @@
 {
-  "name": "vue3-study",
-  "private": true,
-  "version": "0.0.0",
+  "name": "vue3-mine-sweeper",
+  "private": false,
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "lint": "eslint --fix"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@vueuse/core": "^8.2.0",
